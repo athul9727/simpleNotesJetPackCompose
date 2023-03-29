@@ -1,18 +1,25 @@
 package com.example.simplenotesjetpackcompose.components
 
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.Text
-import androidx.compose.material.TextField
-import androidx.compose.material.TextFieldColors
-import androidx.compose.material.TextFieldDefaults
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.platform.SoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.unit.dp
+import com.example.simplenotesjetpackcompose.model.NoteModel
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
@@ -39,5 +46,42 @@ fun NoteInputField(
        }),
         keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done)
     )
+
+}
+
+@Composable
+fun NoteButton(
+    modifier: Modifier = Modifier,
+    text: String = "save",
+    onClick: () -> Unit,
+    enabled: Boolean = true
+){
+
+    Button(onClick = onClick, shape = CircleShape, enabled = enabled, modifier = modifier) {
+           Text(text = text)
+    }
+
+}
+
+@Composable
+fun NoteRow(
+    modifier:Modifier =  Modifier.padding(6.dp),
+    note:NoteModel,
+    onNoteClicked:(NoteModel) -> Unit
+){
+    
+    Surface(modifier= modifier
+        .clip(RoundedCornerShape(topEnd = 33.dp, bottomStart = 33.dp))
+        .fillMaxWidth(), color = Color(0xFFDFE6EB), elevation = 6.dp) {
+
+         Column(
+                 modifier.clickable {}
+                 .padding(horizontal = 14.dp, vertical = 6.dp),
+                   horizontalAlignment = Alignment.Start) {
+
+         }
+        
+    }
+
 
 }

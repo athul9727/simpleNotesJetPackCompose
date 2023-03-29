@@ -10,6 +10,8 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.simplenotesjetpackcompose.data.DataSource
+import com.example.simplenotesjetpackcompose.screens.NoteScreen
 import com.example.simplenotesjetpackcompose.ui.theme.SimpleNotesJetpackComposeTheme
 
 class MainActivity : ComponentActivity() {
@@ -22,7 +24,14 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
+                    NoteScreen(
+                        notes = DataSource().getNote(),
 
+                        onAddNote = {
+
+                        }, onRemoveNote = {
+
+                        })
                 }
             }
         }

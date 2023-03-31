@@ -1,5 +1,7 @@
 package com.example.simplenotesjetpackcompose.screens
 
+import android.content.Context
+import android.widget.Toast
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -17,12 +19,14 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.simplenotesjetpackcompose.R
 import com.example.simplenotesjetpackcompose.components.NoteButton
 import com.example.simplenotesjetpackcompose.components.NoteInputField
+import com.example.simplenotesjetpackcompose.components.NoteRow
 import com.example.simplenotesjetpackcompose.data.DataSource
 import com.example.simplenotesjetpackcompose.model.NoteModel
 
@@ -35,6 +39,7 @@ fun NoteScreen(
 
     var titleState by remember { mutableStateOf("") }
     var notesState by remember { mutableStateOf("") }
+    val context: Context = LocalContext.current
 
     Column(modifier = Modifier.padding(6.dp)) {
 
@@ -60,11 +65,13 @@ fun NoteScreen(
                 if(it.all { char-> char.isLetter() or char.isWhitespace() }){ notesState = it }
             },  modifier = Modifier.padding(all = 6.dp) )
             
-            NoteButton(onClick = {
+            NoteButton(onClick = {//save
 
                 if(titleState.isNotEmpty() and notes.isNotEmpty()){
+                    onAddNote(NoteModel(title = titleState, notes = notesState))
                     titleState = ""
                     notesState = ""
+                    Toast.makeText(context, "Note saved", Toast.LENGTH_SHORT).show()
                 }
 
             }, text = "save",  modifier = Modifier.padding(all = 6.dp))
@@ -77,7 +84,13 @@ fun NoteScreen(
 
         LazyColumn {
             items(notes){
-                Text(text = it.title)
+                NoteRow(note = it, onNoteClicked = {note->
+
+                    onRemoveNote(note)
+
+
+
+                })
             }
 
         }

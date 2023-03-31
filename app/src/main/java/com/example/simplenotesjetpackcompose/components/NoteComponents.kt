@@ -20,6 +20,7 @@ import androidx.compose.ui.platform.SoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import com.example.simplenotesjetpackcompose.model.NoteModel
+import java.time.format.DateTimeFormatter
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
@@ -75,9 +76,19 @@ fun NoteRow(
         .fillMaxWidth(), color = Color(0xFFDFE6EB), elevation = 6.dp) {
 
          Column(
-                 modifier.clickable {}
+             modifier
+                 .clickable {
+
+                     onNoteClicked(note)
+
+                 }
                  .padding(horizontal = 14.dp, vertical = 6.dp),
                    horizontalAlignment = Alignment.Start) {
+             
+             Text(text = note.title, style = MaterialTheme.typography.subtitle2)
+             Text(text = note.notes, style = MaterialTheme.typography.subtitle1)
+             Text(text = note.entryTime.format(DateTimeFormatter.ofPattern("EEE, d MMM")), style = MaterialTheme.typography.subtitle1)
+
 
          }
         

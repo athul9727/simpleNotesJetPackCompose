@@ -19,7 +19,7 @@ import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.platform.SoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
-import com.example.simplenotesjetpackcompose.model.NoteModel
+import com.example.simplenotesjetpackcompose.model.NoteModelEntity
 import java.time.format.DateTimeFormatter
 
 @OptIn(ExperimentalComposeUiApi::class)
@@ -67,8 +67,8 @@ fun NoteButton(
 @Composable
 fun NoteRow(
     modifier:Modifier =  Modifier.padding(6.dp),
-    note:NoteModel,
-    onNoteClicked:(NoteModel) -> Unit
+    note:NoteModelEntity,
+    onNoteClicked:(NoteModelEntity) -> Unit
 ){
     
     Surface(modifier= modifier

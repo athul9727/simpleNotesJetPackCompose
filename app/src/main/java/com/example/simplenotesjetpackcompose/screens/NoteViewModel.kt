@@ -3,25 +3,25 @@ package com.example.simplenotesjetpackcompose.screens
 import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
 import com.example.simplenotesjetpackcompose.data.DataSource
-import com.example.simplenotesjetpackcompose.model.NoteModel
+import com.example.simplenotesjetpackcompose.model.NoteModelEntity
 
 class NoteViewModel : ViewModel() {
 
-    val list = mutableStateListOf<NoteModel>()
+    val list = mutableStateListOf<NoteModelEntity>()
 
     init {
         list.addAll(DataSource().getNote())
     }
 
-    fun addNote(note:NoteModel){
+    fun addNote(note:NoteModelEntity){
        list.add(note)
     }
 
-    fun removeNote(note:NoteModel){
+    fun removeNote(note:NoteModelEntity){
         list.remove(note)
     }
 
-    fun getAllNote():List<NoteModel>{
+    fun getAllNote():List<NoteModelEntity>{
         return list
     }
 

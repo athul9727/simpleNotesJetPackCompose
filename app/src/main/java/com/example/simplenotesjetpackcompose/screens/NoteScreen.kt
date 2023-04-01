@@ -28,13 +28,13 @@ import com.example.simplenotesjetpackcompose.components.NoteButton
 import com.example.simplenotesjetpackcompose.components.NoteInputField
 import com.example.simplenotesjetpackcompose.components.NoteRow
 import com.example.simplenotesjetpackcompose.data.DataSource
-import com.example.simplenotesjetpackcompose.model.NoteModel
+import com.example.simplenotesjetpackcompose.model.NoteModelEntity
 
 @Composable
 fun NoteScreen(
-    notes:List<NoteModel>,
-    onAddNote : (NoteModel) -> Unit,
-    onRemoveNote : (NoteModel) -> Unit,
+    notes:List<NoteModelEntity>,
+    onAddNote : (NoteModelEntity) -> Unit,
+    onRemoveNote : (NoteModelEntity) -> Unit,
 ){
 
     var titleState by remember { mutableStateOf("") }
@@ -68,7 +68,7 @@ fun NoteScreen(
             NoteButton(onClick = {//save
 
                 if(titleState.isNotEmpty() and notes.isNotEmpty()){
-                    onAddNote(NoteModel(title = titleState, notes = notesState))
+                    onAddNote(NoteModelEntity(title = titleState, notes = notesState))
                     titleState = ""
                     notesState = ""
                     Toast.makeText(context, "Note saved", Toast.LENGTH_SHORT).show()

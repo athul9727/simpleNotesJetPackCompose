@@ -20,7 +20,9 @@ import com.example.simplenotesjetpackcompose.model.NoteModel
 import com.example.simplenotesjetpackcompose.screens.NoteScreen
 import com.example.simplenotesjetpackcompose.screens.NoteViewModel
 import com.example.simplenotesjetpackcompose.ui.theme.SimpleNotesJetpackComposeTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     private val noteViewModel:NoteViewModel by viewModels()

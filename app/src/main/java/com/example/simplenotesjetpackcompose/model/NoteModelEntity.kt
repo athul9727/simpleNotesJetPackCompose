@@ -10,6 +10,7 @@ import java.util.*
 @Entity(tableName = "NoteTable")
 data class NoteModelEntity(
     @PrimaryKey
+    @ColumnInfo(name = "Id")
     val id: UUID = UUID.randomUUID(),
     @ColumnInfo(name = "Title")
     val title:String,

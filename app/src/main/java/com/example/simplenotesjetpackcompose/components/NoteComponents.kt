@@ -20,6 +20,7 @@ import androidx.compose.ui.platform.SoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import com.example.simplenotesjetpackcompose.model.NoteModelEntity
+import com.example.simplenotesjetpackcompose.utils.formalDate
 import java.time.format.DateTimeFormatter
 
 @OptIn(ExperimentalComposeUiApi::class)
@@ -87,7 +88,7 @@ fun NoteRow(
              
              Text(text = note.title, style = MaterialTheme.typography.subtitle2)
              Text(text = note.notes, style = MaterialTheme.typography.subtitle1)
-             Text(text = note.entryTime.format(DateTimeFormatter.ofPattern("EEE, d MMM")), style = MaterialTheme.typography.subtitle1)
+             Text(text = note.entryTime.time.formalDate(), style = MaterialTheme.typography.subtitle1)
 
 
          }
